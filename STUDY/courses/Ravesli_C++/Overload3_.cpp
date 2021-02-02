@@ -1,4 +1,4 @@
-4r #include <iostream>
+#include <iostream>
 #include <array>
 #include <string>
 #include <ctime> // fortime()
