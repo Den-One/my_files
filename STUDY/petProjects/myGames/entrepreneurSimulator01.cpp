@@ -162,10 +162,10 @@ struct BudgetInRubles
 
 int main()
 {
-	CarrentDate date(12, 6, 2021);
-	RealTime todayTime(8, 0);
+	CarrentDate date(2, 6, 2021);
+	RealTime todayTime(6, 0);
 	Need hunger(4.0, 0.014);
-	Need sleep(10, 0.009);
+	Need sleep(10, 0.0075);
 	BudgetInRubles persBudget(100);
 	Food vermicelli("vermicell", 17.5, 8.5, 0);
 	Achievement achiv;
