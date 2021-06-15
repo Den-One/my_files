@@ -80,18 +80,22 @@ public:
 	CarrentTime(int hour, int minut, int day, int month, int year)
 		: m_hour(hour), m_minut(minut), CarrentDate(day, month, year) {}
 
-	void passedMinuts(int minuts)
+	void passedMinuts(int minuts) // 22:45 + 480 
 	{
-		if (m_minut + minuts >= 60)
+		if (m_minut + minuts >= 60) // 525 > 60
 		{
-			m_hour += 1;
+			int minutsToHours = (m_minut + minuts) / 60; // 525 / 60 = 8.75 
+			int restOfMinuts = (m_minut + minuts) - (minutsToHours * 60); // 525 - 480 = 45
+			m_minut = restOfMinuts; // 45 -> 45
+
+			m_hour += minutsToHours; // 22:45 -> 30:45
 			if (m_hour > 23)
 			{
-				m_hour = 0;
-				m_livedDays += 1;
+				int newHours = m_hour - 24; // 30 - 24 = 6
+				m_hour = newHours; // 6
 				CarrentDate::goToNextDay();
+				Achievements::m_livedDays += 1;
 			}
-			m_minut += minuts - 60;
 		}
 		else
 			m_minut += minuts;
