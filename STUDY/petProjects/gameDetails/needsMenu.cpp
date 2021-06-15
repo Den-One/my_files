@@ -71,7 +71,27 @@ public:
 	}
 };
 
-class Bladder: public Needs
+class Hygiene : public Needs
+{
+public:
+	Hygiene(double valueOfNeed, double speedOfFalling)
+		: Needs(valueOfNeed, speedOfFalling) {}
+
+	void printCurrentNeedValue() {
+		cout << "Hygiene:" << fixed;
+		Needs::printCurrentNeedValue();
+	}
+	void makeLower(int timeInMinuts)
+	{
+		Needs::makeLower(timeInMinuts);
+		if (s_valueOfNeed < 0.0001)
+		{
+			s_valueOfNeed = 0;
+		}
+	}
+};
+
+class Bladder : public Needs
 {
 public:
 	Bladder(double valueOfNeed, double speedOfFalling)
@@ -81,13 +101,16 @@ public:
 		cout << "Bladder:" << fixed;
 		Needs::printCurrentNeedValue();
 	}
-	void makeLower(int timeInMinuts)
+	void makeLower(int timeInMinuts, Hygiene &hygiene)
 	{
 		Needs::makeLower(timeInMinuts);
 		if (s_valueOfNeed < 0.0001)
 		{
-			cout << "You died from lack of peeing :(\n";
-			exit(1);
+			s_valueOfNeed = 10;
+			hygiene.makeLower(3000);
+			cout << "You pissed off. Hope nobody saw it \1\n";
+			_getch();
+			//exit(1);
 		}
 	}
 };
@@ -100,27 +123,6 @@ public:
 
 	void printCurrentNeedValue() {
 		cout << "Fun:    " << fixed;
-		Needs::printCurrentNeedValue();
-	}
-	void makeLower(int timeInMinuts)
-	{
-		Needs::makeLower(timeInMinuts);
-		if (s_valueOfNeed < 0.0001)
-		{
-			cout << "You died from lack of fun :(\n";
-			exit(1);
-		}
-	}
-};
-
-class Hygiene : public Needs
-{
-public:
-	Hygiene(double valueOfNeed, double speedOfFalling)
-		: Needs(valueOfNeed, speedOfFalling) {}
-
-	void printCurrentNeedValue() {
-		cout << "Hygiene:" << fixed;
 		Needs::printCurrentNeedValue();
 	}
 	void makeLower(int timeInMinuts)
@@ -147,11 +149,7 @@ public:
 	void makeLower(int timeInMinuts)
 	{
 		Needs::makeLower(timeInMinuts);
-		if (s_valueOfNeed < 0.0001)
-		{
-			cout << "You died from lack of fun :(\n";
-			exit(1);
-		}
+		if (s_valueOfNeed < 0.0001) s_valueOfNeed = 0;
 	}
 };
 
@@ -178,13 +176,13 @@ void printPersonDisplayInConsole(Hunger hunger, Energy sleep, Bladder bladder, H
 
 int main()
 {
-	// Macking our display in console
-	Hunger hunger(1.0, 0.014);
-	Energy sleep(10, 0.0075);
-	Bladder bladder(4, 0.009);
-	Hygiene hygiene(8, 0.0009);
-	Social social(4, 0.001);
-	Fun fun(5, 0.008);
+	/* ------ Make our needs ------ */
+	Hunger hunger(10, 0.010416);
+	Energy sleep(10, 0.008771929);
+	Bladder bladder(10, 0.011904);
+	Hygiene hygiene(10, 0.00362318);
+	Social social(10, 0.00260416);
+	Fun fun(10, 0.003472);
 
 	printPersonDisplayInConsole(hunger, sleep, bladder, hygiene, social, fun);
 	sleep.makeLower(1);
