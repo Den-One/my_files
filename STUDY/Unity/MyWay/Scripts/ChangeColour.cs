@@ -14,37 +14,41 @@ public class ChangeColour : MonoBehaviour
 		{
 			gameObject.GetComponent<Renderer>().material.color = Color.red;
 		}
-		if (Input.GetKeyDown(KeyCode.G)) // GREEN COLOR!
+		else if (Input.GetKeyDown(KeyCode.G)) // GREEN COLOR!
 		{
 			gameObject.GetComponent<Renderer>().material.color = Color.green;
 		}
-		if (Input.GetKeyDown(KeyCode.B)) // BLUE COLOR!
+		else if (Input.GetKeyDown(KeyCode.B)) // BLUE COLOR!
 		{
 			gameObject.GetComponent<Renderer>().material.color = Color.blue;
 		}
-		if (Input.GetKeyDown(KeyCode.W)) // WHITE COLOR!
+		else if (Input.GetKeyDown(KeyCode.W)) // WHITE COLOR!
 		{
 			gameObject.GetComponent<Renderer>().material.color = Color.white;
 		}
-		if (Input.GetKeyDown(KeyCode.L)) // BLACK!
+		else if (Input.GetKeyDown(KeyCode.L)) // BLACK!
 		{
 			gameObject.GetComponent<Renderer>().material.color = Color.black;
 		}
-		if (Input.GetKeyDown(KeyCode.A)) // GRAY!
+		else if (Input.GetKeyDown(KeyCode.A)) // GRAY!
 		{
 			gameObject.GetComponent<Renderer>().material.color = Color.gray;
 		}
-		if (Input.GetKeyDown(KeyCode.C)) // SKY BLUE!
+		else if (Input.GetKeyDown(KeyCode.C)) // SKY BLUE!
 		{
 			gameObject.GetComponent<Renderer>().material.color = Color.cyan;
 		}
-		if (Input.GetKeyDown(KeyCode.Y)) // YELLOW
+		else if (Input.GetKeyDown(KeyCode.Y)) // YELLOW
 		{
 			gameObject.GetComponent<Renderer>().material.color = Color.yellow;
 		}
-		if (Input.GetKeyDown(KeyCode.M)) // PURPURE
+		else if (Input.GetKeyDown(KeyCode.M)) // PURPURE
 		{
 			gameObject.GetComponent<Renderer>().material.color = Color.magenta;
+		}
+		else if (Input.GetKeyDown(KeyCode.Z)) // REMOVE COLOR
+		{
+			gameObject.GetComponent<Renderer>().material.color = Color.clear;
 		}
 	}
 }
